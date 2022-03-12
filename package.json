@@ -1,0 +1,39 @@
+{
+  "name": "news_express",
+  "version": "1.0.0",
+  "private": true,
+  "description": "��#\u0000 \u0000n\u0000e\u0000w\u0000s\u0000_\u0000e\u0000x\u0000p\u0000r\u0000e\u0000s\u0000s\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "fetch": "^1.1.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "node-fetch": "^3.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": "v12.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShivaniMaragi/news_express.git"
+  },
+  "author": "Shivani Maragi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShivaniMaragi/news_express/issues"
+  },
+  "homepage": "https://github.com/ShivaniMaragi/news_express#readme"
+}
