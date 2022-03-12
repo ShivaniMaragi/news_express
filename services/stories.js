@@ -32,9 +32,6 @@ const stories = {
         .catch((error) => {
           console.error(error);
         });
-      bestStories.forEach((ele) => {
-        console.log("List", ele);
-      });
       res.send(bestStories);
     } catch (err) {
       throw Error("Something Wend wrong!!");
