@@ -1,4 +1,5 @@
 const axios = require("axios");
+const urlMetadata = require('url-metadata');
 
 const stories = {
   getTopStories: async function (req, res, next) {
@@ -64,7 +65,6 @@ const stories = {
   getStoryDetails: async function (req, res, next) {
     try {
       let response = [];
-      console.log(req.params);
       if (req.params.startPos && req.params.endPos && req.params.storyType) {
         let data = await getDifferentStories({
           startPos: req.params.startPos,
@@ -74,13 +74,30 @@ const stories = {
           data.map(async (ele) => {
             await axios
               .get(`https://hacker-news.firebaseio.com/v0/item/${ele}.json`)
-              .then((newStoriesRes) => {
+              .then(async (newStoriesRes) => {
+                let image = await getUrlMetadataImage({url:newStoriesRes.data.url})
+                newStoriesRes.data.image = image
                 response.push(newStoriesRes.data);
               });
           })
         );
         res.send(response);
       }
+    } catch (err) {
+      throw Error("Something Wend wrong!!");
+    }
+  },
+
+  getUrlMetadata: async function (req, res, next) {
+    try {
+      urlMetadata(`https://${req.params[0]}`).then(
+        function (metadata) {
+          res.send(metadata.image);
+        },
+        function (error) {
+          res.send(`../assets/images/download.png`)
+        }
+      );
     } catch (err) {
       throw Error("Something Wend wrong!!");
     }
@@ -120,4 +137,25 @@ async function getDifferentStories(body) {
   } catch (err) {
     throw Error("Something Wend wrong!!");
   }
+}
+
+  async function getUrlMetadataImage (req) {
+    try {
+      const url = await urlMetadata(`${req.url}`).then(
+         function (metadata) {
+          if(metadata.image){
+          return metadata.image;
+          }else{
+            return `../assets/images/download.png`
+          }
+        },
+        function (error) {
+          return `../assets/images/download.png`
+        }
+      );
+      return url;
+    } catch (err) {
+      throw Error("Something Wend wrong!!");
+    }
+  
 }
