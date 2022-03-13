@@ -3,10 +3,8 @@ var router = express.Router();
 const stories = require("../services/stories");
 
 
-/* GET home page. */
-// router.get("/", function (req, res, next) {
-//   res.render("index", { title: "Express" });
-// });
+
+router.get("/", stories.storiesIndex);
 
 router.get("/getTopStories", stories.getTopStories);
 

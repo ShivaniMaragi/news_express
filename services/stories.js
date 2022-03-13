@@ -2,6 +2,9 @@ const axios = require("axios");
 const urlMetadata = require('url-metadata');
 
 const stories = {
+  storiesIndex:function (req, res, next) {
+    res.send("Stories Api Services");
+  },
   getTopStories: async function (req, res, next) {
     try {
       const topstories = await axios
